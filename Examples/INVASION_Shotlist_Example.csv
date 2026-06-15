@@ -1,0 +1,38 @@
+Scene,Shot,VFX Tags,Complexity,Assets,# Shots,Description,VFX Assumptions,VFX Methodology,FX,ANIMATION,LIGHTING,COMPOSITING,CFX,MATTEPAINT
+210,010,"2D DMP MED, 3D FULL CGI MED",EASY,ALIEN FIGHTER,1,Wide as ALIEN FIGHTER banks hard over the rooftops.,,,4,,,,,4
+210,020,3D FULL CGI MED,HARD,SCOUT SAUCER,1,SCOUT SAUCER fires on the fleeing crowd below.,,,6,,,9,3,4
+210,030,"3D CHARACTER MED, 2D COMP MED",EASY,HUMAN GUNSHIP,2,Wide as HUMAN GUNSHIP banks hard over the rooftops.,,,5,6,2,,2,
+210,040,3D ENVIRO MED,HARD,SWARM INSECTOID,1,Tracking SWARM INSECTOID weaving between towers.,,,,4,4,,9,
+210,050,"3D FX MED, 3D ENVIRO MED",MEDIUM,"HUMAN GUNSHIP, SCOUT SAUCER",1,HUMAN GUNSHIP fires on the fleeing crowd below.,,,,,,2,,2
+210,060,"3D FX MED, 2D DMP MED",HARD,HARBOUR CITY,1,Wide as HARBOUR CITY banks hard over the rooftops.,,,12,,,,9,6
+210,070,"3D FX MED, 3D ENVIRO MED",VERY HARD,ALIEN HIVE INTERIOR,3,ALIEN HIVE INTERIOR fires on the fleeing crowd below.,,,8,16,6,,,
+210,080,"3D ENVIRO MED, 3D FULL CGI MED",EASY,ALIEN SOLDIER,1,ALIEN SOLDIER fires on the fleeing crowd below.,,,,,4,2,2,2
+210,090,3D CHARACTER MED,HARD,ALIEN FIGHTER,2,Close on ALIEN FIGHTER as its shields flare.,ALIEN FIGHTER is full CG; plate clean.,"Matchmove, animate, sim FX, light & comp.",,,,6,9,
+210,100,"3D CHARACTER MED, 2D COMP MED",COMPLEX,SWARM INSECTOID,1,SWARM INSECTOID crashes through a billboard in a shower of sparks.,,,,24,,6,15,15
+210,110,3D CHARACTER MED,EASY,ALIEN SOLDIER,1,Close on ALIEN SOLDIER as its shields flare.,,,3,,,,4,
+210,120,"2D COMP MED, 3D FULL CGI MED",EASY,SCOUT SAUCER,1,SCOUT SAUCER looms over the team as they take cover.,SCOUT SAUCER is full CG; plate clean.,"Matchmove, animate, sim FX, light & comp.",,,2,4,2,
+220,010,"3D FX MED, 3D FULL CGI MED",EASY,"ALIEN SOLDIER, ALIEN HIVE INTERIOR",1,ALIEN SOLDIER looms over the team as they take cover.,ALIEN SOLDIER is full CG; plate clean.,"Matchmove, animate, sim FX, light & comp.",,4,,,2,
+220,020,2D COMP MED,MEDIUM,ALIEN HIVE INTERIOR,1,Close on ALIEN HIVE INTERIOR as its shields flare.,,,,8,4,,,
+220,030,3D CHARACTER MED,VERY HARD,"ALIEN FIGHTER, ALIEN FIGHTER",1,ALIEN FIGHTER crashes through a billboard in a shower of sparks.,ALIEN FIGHTER is full CG; plate clean.,"Matchmove, animate, sim FX, light & comp.",12,,8,,,
+220,040,"3D ENVIRO MED, 3D FX MED",COMPLEX,ALIEN FIGHTER,1,ALIEN FIGHTER fires on the fleeing crowd below.,,,27,18,,12,,
+220,050,2D DMP MED,EASY,ALIEN HIVE INTERIOR,1,ALIEN HIVE INTERIOR fires on the fleeing crowd below.,,,,,4,2,,
+220,060,"2D DMP MED, 3D FULL CGI MED",HARD,ALIEN SOLDIER,1,ALIEN SOLDIER fires on the fleeing crowd below.,,,,6,,9,,6
+220,070,3D FULL CGI MED,EASY,"SWARM INSECTOID, ALIEN HIVE INTERIOR",1,SWARM INSECTOID looms over the team as they take cover.,,,4,4,,,,2
+220,080,2D COMP MED,MEDIUM,SWARM INSECTOID,2,SWARM INSECTOID looms over the team as they take cover.,SWARM INSECTOID is full CG; plate clean.,"Matchmove, animate, sim FX, light & comp.",,,,6,3,6
+220,090,3D ENVIRO MED,VERY HARD,ALIEN FIGHTER,1,ALIEN FIGHTER fires on the fleeing crowd below.,ALIEN FIGHTER is full CG; plate clean.,"Matchmove, animate, sim FX, light & comp.",16,,,,8,12
+220,100,"3D FULL CGI MED, 2D COMP MED",EASY,SWARM INSECTOID,1,Wide as SWARM INSECTOID banks hard over the rooftops.,,,5,5,,4,,4
+220,110,"3D ENVIRO MED, 2D COMP MED",HARD,ALIEN FIGHTER,3,Tracking ALIEN FIGHTER weaving between towers.,,,,4,,8,,
+220,120,"3D FX MED, 3D FULL CGI MED",HARD,ALIEN SOLDIER,1,Close on ALIEN SOLDIER as its shields flare.,,,,,6,,,4
+220,130,"3D CHARACTER MED, 3D FULL CGI MED",MEDIUM,ALIEN FIGHTER,2,ALIEN FIGHTER fires on the fleeing crowd below.,,,8,,4,4,,2
+230,010,"2D COMP MED, 3D ENVIRO MED",MEDIUM,SCOUT SAUCER,1,Tracking SCOUT SAUCER weaving between towers.,SCOUT SAUCER is full CG; plate clean.,"Matchmove, animate, sim FX, light & comp.",3,3,,,,
+230,020,"3D FULL CGI MED, 3D CHARACTER MED",MEDIUM,HUMAN GUNSHIP,1,HUMAN GUNSHIP looms over the team as they take cover.,,,,3,,4,,4
+230,030,3D ENVIRO MED,VERY HARD,SCOUT SAUCER,1,Wide as SCOUT SAUCER banks hard over the rooftops.,,,,10,,,4,
+230,040,3D ENVIRO MED,EASY,"HARBOUR CITY, ALIEN SOLDIER",3,Tracking HARBOUR CITY weaving between towers.,HARBOUR CITY is full CG; plate clean.,"Matchmove, animate, sim FX, light & comp.",3,2,,2,,3
+230,050,"2D COMP MED, 3D CHARACTER MED",MEDIUM,HUMAN GUNSHIP,1,Close on HUMAN GUNSHIP as its shields flare.,,,8,,,,6,6
+230,060,"3D CHARACTER MED, 3D ENVIRO MED",EASY,"ALIEN FIGHTER, ALIEN SOLDIER",1,Tracking ALIEN FIGHTER weaving between towers.,,,,3,3,,2,
+230,070,3D ENVIRO MED,COMPLEX,"HARBOUR CITY, HARBOUR CITY",1,Wide as HARBOUR CITY banks hard over the rooftops.,,,27,24,,6,,
+230,080,"2D COMP MED, 3D CHARACTER MED",HARD,ALIEN SOLDIER,1,Close on ALIEN SOLDIER as its shields flare.,,,,,4,,6,3
+230,090,"3D CHARACTER MED, 3D FULL CGI MED",MEDIUM,ALIEN FIGHTER,1,ALIEN FIGHTER looms over the team as they take cover.,ALIEN FIGHTER is full CG; plate clean.,"Matchmove, animate, sim FX, light & comp.",4,,2,,5,5
+230,100,"3D FX MED, 3D CHARACTER MED",EASY,"SCOUT SAUCER, HARBOUR CITY",1,SCOUT SAUCER looms over the team as they take cover.,,,7,,2,3,,2
+230,110,"2D DMP MED, 2D COMP MED",EASY,HARBOUR CITY,1,Wide as HARBOUR CITY banks hard over the rooftops.,,,6,3,,3,,2
+230,120,"3D ENVIRO MED, 2D COMP MED",EASY,SCOUT SAUCER,1,SCOUT SAUCER fires on the fleeing crowd below.,,,5,,,4,,
