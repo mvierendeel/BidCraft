@@ -1,0 +1,137 @@
+# BidCraft — Release Notes V40–V85
+
+**Created by Mathieu Vierendeel**
+
+---
+
+## V40–V44 — Foundation upgrades
+Excel/CSV importer fix; INVASION example project; Cost column in bid grid; sequence-level shot counts; Clear project; sticky schedule columns; keyboard shortcuts cheat-sheet; Overview dashboard (first version).
+
+## V45–V53 — Overview & scheduling
+Overview charts (sequence bars, asset bars); percentage overhead support; budget split panel (Artist / Support / Overhead); studio closure support in schedule.
+
+## V54–V60 — Auto-fill & overhead
+Overhead = % × heads × rate; **Auto-fill schedule** (flat average, only-fill-empty, phased ramp with curves and closure-awareness); day-snapping; max-head caps; Clear schedule.
+
+---
+
+## V61–V70 — AI Setups *(major feature)*
+Full AI Setups system: reusable workflow lines as a third bidding tab, separate from shots and assets.
+
+- **Build cost** — software + GPU + build-days × rate, counted once per project
+- **Per-use offset** — applies per shot/asset × count; supports negative offsets (net savings)
+- **Per-entry overrides** — gold highlight, live warning when offset changes
+- **Scope control** — shot / asset / both; narrowing warns before detaching
+- **Schedule integration** — combined AI SETUPS line at top of crew ramp (blue)
+- **Dashboard** — AI as its own budget slice; net saving label when negative
+- **Export/import** — standalone AI Setups file + included in full project export
+
+---
+
+## V71 — Calculation audit & AI rollup fixes
+Full independent audit of all financial calculations against the real 186-shot INVASION project (7,238 dept-days, $5.6M cost — verified to the dollar).
+
+**Three bugs fixed:**
+- Dashboard folded AI offsets into artist cost and omitted AI build cost entirely — dashboard and Schedule showed different project totals. Fixed: AI is now its own reconciled slice, both pages agree.
+- Snapshots dropped asset AI cost (Compare deltas showed phantom changes). Fixed.
+- `assetMeta.ai` entries were not normalized through `normalizeAI`, unlike shots. Fixed.
+
+---
+
+## V72 — Bid grid improvements & full AI in Excel export
+
+- **Producer Offset footer misaligned** — missing AI column cells in the footer shifted every total column left. Fixed; AI $ total shown in footer.
+- **Auto-fill includes AI Setups build line** (flat and phased modes).
+- **Bulk: Apply AI Setup** — new scope-aware modal in the Bulk menu, works on shots and assets; includes Detach option.
+- **Excel export — full AI support** — new AI Setups sheet, AI $ column in Bid sheets, AI build cost line, project total cost including AI. Validated by opening the generated workbook. No-AI projects unchanged (4 sheets).
+
+---
+
+## V73 — Sticky header transparency fix
+AI Setup dropdowns and the collapsed blue dot were showing *through* the sticky column header when scrolling. Root cause: the AI header cells had a near-transparent background (`rgba` 5% tint) that let scrolling body content show through. Fixed by layering the tint over an opaque base, theme-safe in both light and dark mode.
+
+---
+
+## V74 — Phased auto-fill closure fallback
+When a department's configured phase window (e.g. COMPOSITING 50–100%) fell entirely inside a studio closure, that department was silently skipped — showing 0 in the visible grid with budget remaining. Fixed: when the window is fully closed, the fill falls back to all working weeks so no budgeted department is ever dropped.
+
+---
+
+## V75 — Snap-to-zero rounding fix
+Small budgets spread across many weeks (e.g. AI Setups 1.6 person-weeks over 34 weeks = 0.047/week) rounded to zero in every week, dropping the entire line. Replaced per-week independent snapping with a **largest-remainder distribution** that preserves the exact total. Scheduled person-weeks now match budget to the day across all modes. Applied to flat and phased fill.
+
+---
+
+## V76 — Stale hidden-week bug (the real auto-fill fix)
+The root cause of persistent auto-fill failures: when a schedule was shortened after a fill had already been run, old ramp values remained in now-hidden weeks beyond the new delivery date. `_fillTargets` scanned the *entire* array (including those hidden weeks), saw values > 0, and excluded the department as "already staffed" — even though it showed 0 in the visible grid with budget remaining.
+
+Fixed: `rampStaffed()` now only checks visible weeks (0 to `scheduleWeeks()`). Applied to all fill paths — flat, empty, phased, and the AI line.
+
+**Also fixed:** the phased modal (`id="phasedModal"`) had lost its outer wrapper element in V72 when the bulk AI modal was inserted, making `$("phasedModal")` return null, which threw silently and prevented the phased window from ever opening. This was the cause of "nothing happens" when clicking Phased Ramp.
+
+---
+
+## V77 — Scheduling hardening
+
+- `setRampCell` now pads arrays with real zeros (no sparse holes that serialize to `null` and cause fragile state across save/load).
+- `chooseAutoFill` and `openPhased` now guard against null context (unguarded destructure would throw silently in the browser, making the click do nothing).
+- Diagnostic toasts distinguish "no bid days" from "already staffed in visible weeks" so users know exactly why a fill didn't run.
+- AI-only phased fill (all depts staffed, only AI build line remaining) now opens the phased modal correctly instead of bailing out.
+
+---
+
+## V78 — Project load no longer overwrites existing work
+`File → Load project` previously called `applyState()` on the active project, silently replacing it. Now loading a file always **creates a new project slot** and leaves the existing project untouched. The toast confirms "Loaded as a new project."
+
+---
+
+## V79 — Studio settings & keyboard shortcuts styling
+
+- **Studio settings** — Overhead subheading changed from gold to accent blue; all section titles now use consistent CSS-driven spacing (no more ad-hoc inline margins); Clear project section kept red.
+- **Keyboard shortcuts** — Section headers (General, Breakdown, Bidding, Schedule) changed from muted grey to light blue (accent).
+
+---
+
+## V80 — Styling, shift-select, bookmarks & red Clear
+
+- **Project settings** — "Custom milestones" and "Non-working periods" headings now uppercase + light blue, matching the section style.
+- **Shift-click range selection** — In the Shots and Assets bid grid, click one checkbox, hold Shift, click another, and every row between takes the same state (select or deselect a range).
+- **Colored bookmarks** — New Bookmarks dropdown in the breakdown toolbar (between Format Screenplay and Clear). Pick one of 5 colors to drop a marker at the current cursor position; each bookmark shows a date + time stamp and a label pulled from the nearby script text. Click to scroll back to it with a flash animation. Saves with the project and survives reload.
+- **Clear script button** — Now red (btn-danger) with a confirmation warning.
+
+---
+
+## V81 — Bookmark dropdown clipping fix
+The bookmark popup was being clipped by the script panel's `overflow: hidden`. Fixed by positioning it with `position: fixed` and dynamic coordinates computed on open, so it renders freely above the panel boundary.
+
+---
+
+## V82 — Budget split bar math fix (101% bug)
+When AI produces a net saving (negative offset), `grandProject` becomes smaller than the sum of the positive costs — dividing each positive cost by the reduced total produced segments summing to >100% (101% in the reported case).
+
+Fixed with a two-mode denominator: when AI is a saving, the bar sizes against gross spend (pre-saving), keeping the bar at 100% while the saving is shown in the legend only. When AI is a positive cost it gets its own segment. Both modes always show the correct `grandProject` total.
+
+---
+
+## V83 — Project management fixes
+
+- **Loading a project file now creates a new project slot** instead of overwriting the active one (also lands in V78 — confirmed and kept).
+- **Project dropdown 20% wider** (180px → 216px max-width).
+- Storage-full warning removed (a full 186-shot project is 154 KB; the 5MB limit fits ~32 projects of that size — not a real concern).
+
+---
+
+## V84 — Department column hide/reorder
+
+- **Hide department columns** — hover any dept header to reveal action icons; the eye icon hides the column while preserving all bid data. A Cols button appears in the toolbar to restore all. Click any stub to restore individually. Persists per project.
+- **Reorder departments (Bidding)** — left/right arrows in the dept header action bar reorder the departments array. Bid data travels with the name. Undo works.
+- **Reorder departments (Schedule)** — ▲/▼ arrows appear on hover in the dept row label. Same underlying reorder — bid and schedule stay in sync.
+
+---
+
+## V85 — AI Setups phased ramp controls
+The AI Setups build line now appears in the phased ramp modal with full controls — **window (start %, end %)**, **head cap**, and **curve selector** (Ramp, Bell, Plateau, Ramp-up) — just like every other department. Default is 0–30% Ramp (front-loaded, since build work happens at project start). Previously always filled flat regardless of mode.
+
+---
+
+*BidCraft · VFX Script Breakdown, Bidding & Scheduling · created by Mathieu Vierendeel*
